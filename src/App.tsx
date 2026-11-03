@@ -1,40 +1,16 @@
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Menu, X, Code2, Layers3, Database, Workflow, ExternalLink, MapPin, Terminal, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Code2, Layers3, Database, Workflow, MapPin, Terminal, CheckCircle2 } from "lucide-react";
 import { profile, experience, projects, skillGroups, education, achievements } from "./data";
+import Reveal, { revealVariants } from "./components/Reveal";
+import SiteHeader from "./components/SiteHeader";
+import SiteFooter from "./components/SiteFooter";
+import Button from "./components/Button";
 
-const reveal = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } }
-};
-function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const reduced = useReducedMotion();
-  return <motion.div className={className} variants={reveal} initial={reduced ? false : "hidden"} whileInView="visible" viewport={{ once: true, amount: 0.14 }}>{children}</motion.div>;
-}
-const nav = ["About", "Experience", "Projects", "Skills", "Contact"];
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-  const closeMenu = () => setMenuOpen(false);
   return (
     <div className="site-shell">
       <div className="grain" aria-hidden="true" />
-      <header className={`nav-wrap ${scrolled ? "nav-scrolled" : ""}`}>
-        <nav className="nav container">
-          <a className="brand" href="#home" aria-label="Raushan home">rj<span>.</span><small>dev</small></a>
-          <div className="desktop-nav">
-            {nav.map((item, i) => <a key={item} href={`#${item.toLowerCase()}`}><span>{String(i + 1).padStart(2, "0")}</span>{item}</a>)}
-          </div>
-          <a className="nav-cta" href="#contact">Let's connect <ArrowUpRight size={15} /></a>
-          <button className="menu-button" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</button>
-        </nav>
-        {menuOpen && <div className="mobile-nav">{nav.map(item => <a key={item} href={`#${item.toLowerCase()}`} onClick={closeMenu}>{item}<ArrowUpRight size={16}/></a>)}</div>}
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="hero container" id="home">
@@ -42,14 +18,14 @@ function App() {
           <div className="hero-orb orb-one" aria-hidden="true" />
           <div className="hero-orb orb-two" aria-hidden="true" />
           <motion.div className="hero-copy" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.12 } } }}>
-            <motion.div className="eyebrow" variants={reveal}><span className="status-dot" /> FULL STACK DEVELOPER <span className="eyebrow-line" /></motion.div>
-            <motion.h1 variants={reveal}>Building useful<br/>software with <span className="gradient-text">purpose.</span></motion.h1>
-            <motion.p className="hero-lead" variants={reveal}>I'm <strong>{profile.name}</strong> — a full stack developer crafting secure, scalable enterprise applications and thoughtful digital experiences.</motion.p>
-            <motion.div className="hero-actions" variants={reveal}>
-              <a className="button button-primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
-              <a className="button button-ghost" href="/Raushan_Kumar_Jha_Resume.pdf" download><Download size={16}/> Download resume</a>
+            <motion.div className="eyebrow" variants={revealVariants}><span className="status-dot" /> FULL STACK DEVELOPER <span className="eyebrow-line" /></motion.div>
+            <motion.h1 variants={revealVariants}>Building useful<br/>software with <span className="gradient-text">purpose.</span></motion.h1>
+            <motion.p className="hero-lead" variants={revealVariants}>I'm <strong>{profile.name}</strong> — a full stack developer crafting secure, scalable enterprise applications and thoughtful digital experiences.</motion.p>
+            <motion.div className="hero-actions" variants={revealVariants}>
+              <Button href="#projects">Explore my work <ArrowDown size={16}/></Button>
+              <Button href="/Raushan_Kumar_Jha_Resume.pdf" variant="ghost" download><Download size={16}/> Download resume</Button>
             </motion.div>
-            <motion.div className="hero-meta" variants={reveal}><span><MapPin size={14}/>{profile.location}</span><span className="meta-divider" /><span><span className="status-dot" /> Open to opportunities</span></motion.div>
+            <motion.div className="hero-meta" variants={revealVariants}><span><MapPin size={14}/>{profile.location}</span><span className="meta-divider" /><span><span className="status-dot" /> Open to opportunities</span></motion.div>
           </motion.div>
           <motion.div className="hero-visual" initial={{ opacity: 0, x: 28 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.35 }}>
             <div className="visual-label"><span>PROFILE.TS</span><span className="window-dots"><i/><i/><i/></span></div>
@@ -112,11 +88,11 @@ function App() {
         <section className="contact-section" id="contact">
           <div className="contact-glow" aria-hidden="true"/>
           <div className="container contact-inner">
-            <Reveal><span className="section-kicker">06 / CONTACT</span><h2>Have a good problem<br/>to <span className="gradient-text">solve together?</span></h2><p>I'm always happy to connect about interesting products, engineering challenges, and opportunities to build something meaningful.</p><a className="button button-primary contact-button" href={`mailto:${profile.email}`}>Start a conversation <ArrowUpRight size={17}/></a><div className="social-row"><a href={`mailto:${profile.email}`}><Mail size={17}/>Email</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17}/>LinkedIn</a><a href={profile.github} target="_blank" rel="noreferrer"><Github size={17}/>GitHub</a><a href={profile.leetcode} target="_blank" rel="noreferrer"><Code2 size={17}/>LeetCode</a></div></Reveal>
+            <Reveal><span className="section-kicker">06 / CONTACT</span><h2>Have a good problem<br/>to <span className="gradient-text">solve together?</span></h2><p>I'm always happy to connect about interesting products, engineering challenges, and opportunities to build something meaningful.</p><Button className="contact-button" href={`mailto:${profile.email}`}>Start a conversation <ArrowUpRight size={17}/></Button><div className="social-row"><a href={`mailto:${profile.email}`}><Mail size={17}/>Email</a><a href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={17}/>LinkedIn</a><a href={profile.github} target="_blank" rel="noreferrer"><Github size={17}/>GitHub</a><a href={profile.leetcode} target="_blank" rel="noreferrer"><Code2 size={17}/>LeetCode</a></div></Reveal>
           </div>
         </section>
       </main>
-      <footer className="footer container"><a className="brand" href="#home">rj<span>.</span><small>dev</small></a><span>Designed & built with care by {profile.name}</span><span>© {new Date().getFullYear()}</span></footer>
+      <SiteFooter />
     </div>
   );
 }
