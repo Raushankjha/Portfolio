@@ -15,3 +15,164 @@
 @media(max-width:1000px){.container{width:min(100% - 48px,800px)}.hero{grid-template-columns:1fr;min-height:auto;height:auto;padding-top:155px;padding-bottom:100px;gap:60px}.hero-copy{max-width:700px}.hero-visual{justify-self:center;max-width:600px}.hero-bottom-note{bottom:30px}.about-layout{grid-template-columns:1fr;gap:45px}.about-cards{grid-template-columns:repeat(3,1fr)}.skills-grid{grid-template-columns:repeat(2,1fr)}.education-layout{grid-template-columns:1fr;gap:45px}.desktop-nav{gap:15px}.desktop-nav a{font-size:.7rem}}
 @media(max-width:700px){.container{width:calc(100% - 40px)}.nav{height:70px}.desktop-nav,.nav-cta{display:none}.menu-button{display:block}.mobile-nav{display:grid;padding:8px 20px 20px;background:#0b0b12ed;border-bottom:1px solid var(--line)}.mobile-nav a{display:flex;justify-content:space-between;padding:14px 0;color:#c6c3d9;border-bottom:1px solid #ffffff09;font-size:.9rem}.hero{padding-top:125px;padding-bottom:95px;gap:45px}.hero h1{font-size:clamp(3.25rem,13vw,5rem)}.hero-lead{font-size:.92rem}.hero-meta{margin-top:32px}.hero-visual{padding:10px 0 20px}.code-panel{padding:20px 12px}.code-line{font-size:.65rem;gap:10px;min-height:31px}.line-no{font-size:.58rem;width:18px}.indent{padding-left:12px}.indent2{padding-left:24px}.floating-chip{padding:9px 11px}.floating-chip b{font-size:.65rem}.floating-chip small{font-size:.55rem}.chip-top{left:-7px;top:-4px}.chip-bottom{right:-5px;bottom:-3px}.section{padding:82px 0}.section-heading{margin-bottom:36px}.section-heading h2,.education-layout h2,.contact-inner h2{font-size:clamp(2.25rem,9vw,3.4rem)}.large-copy{font-size:1.35rem}.about-cards{grid-template-columns:1fr}.mini-card{padding:20px}.mini-icon{margin-bottom:15px}.row-heading{display:block}.heading-aside{margin-top:20px}.timeline{margin-left:0;gap:17px}.timeline-item{grid-template-columns:27px 1fr;gap:13px}.timeline:before{left:13px}.timeline-marker{width:27px;height:27px;font-size:.58rem}.timeline-card{padding:20px}.timeline-top{display:block}.period{display:inline-block;margin-top:10px}.timeline-card ul{font-size:.77rem}.project-grid{grid-template-columns:1fr}.project-art{height:220px}.project-info{padding:22px}.skills-grid{grid-template-columns:1fr}.skill-card{padding:22px}.education-card{align-items:start;padding:20px}.social-row{gap:17px}.footer{padding:22px 0;flex-direction:column;justify-content:center;text-align:center;gap:12px}.hero-bottom-note{font-size:.55rem}.about-links{gap:15px}.about-links a{font-size:.72rem}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+:root {
+  color-scheme: dark;
+  --text: #f0eff8;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  color: #242337;
+  background: #f7f7fb;
+  --bg: #f7f7fb;
+  --panel: #ffffff;
+  --panel2: #f0eff7;
+  --line: rgba(35, 31, 60, 0.12);
+  --muted: #69687c;
+  --text: #242337;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 5px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--muted);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+.theme-toggle:focus-visible,
+.menu-button:focus-visible,
+.button:focus-visible,
+.nav-cta:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  box-sizing: content-box;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+:root[data-theme="dark"] .theme-toggle svg:nth-child(2),
+:root[data-theme="light"] .theme-toggle svg:first-child {
+  color: #fff;
+  background: var(--accent);
+}
+
+:root[data-theme="light"] .nav-scrolled {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+:root[data-theme="light"] .desktop-nav a {
+  color: #666579;
+}
+
+:root[data-theme="light"] .desktop-nav a:hover,
+:root[data-theme="light"] .nav-cta {
+  color: #29283a;
+}
+
+:root[data-theme="light"] .menu-button {
+  color: #29283a;
+}
+
+:root[data-theme="light"] .mobile-nav {
+  background: rgba(255, 255, 255, 0.97);
+}
+
+:root[data-theme="light"] .mobile-nav a {
+  color: #39384b;
+  border-color: rgba(35, 31, 60, 0.1);
+}
+
+:root[data-theme="light"] .hero-lead,
+:root[data-theme="light"] .heading-aside,
+:root[data-theme="light"] .body-copy,
+:root[data-theme="light"] .mini-card p,
+:root[data-theme="light"] .timeline-card ul,
+:root[data-theme="light"] .job-intro,
+:root[data-theme="light"] .period,
+:root[data-theme="light"] .project-info > p,
+:root[data-theme="light"] .project-details li,
+:root[data-theme="light"] .skill-card > p,
+:root[data-theme="light"] .education-card p,
+:root[data-theme="light"] .achievement,
+:root[data-theme="light"] .contact-inner > div > p,
+:root[data-theme="light"] .social-row a {
+  color: #666579;
+}
+
+:root[data-theme="light"] .hero-lead strong,
+:root[data-theme="light"] .footer .brand {
+  color: #242337;
+}
+
+:root[data-theme="light"] .about-links a {
+  color: #29283a;
+}
+
+:root[data-theme="light"] .button-ghost,
+:root[data-theme="light"] .mini-card,
+:root[data-theme="light"] .timeline-card,
+:root[data-theme="light"] .project-card,
+:root[data-theme="light"] .skill-card,
+:root[data-theme="light"] .education-card {
+  background: #fff;
+}
+
+:root[data-theme="light"] .button-ghost {
+  color: #39384b;
+}
+
+:root[data-theme="light"] .about-section {
+  background: linear-gradient(180deg, #f0eff7 0%, #f7f7fb 100%);
+  border-color: rgba(35, 31, 60, 0.08);
+}
+
+:root[data-theme="light"] .experience-section,
+:root[data-theme="light"] .skills-section,
+:root[data-theme="light"] .contact-section {
+  background: var(--bg);
+}
+
+:root[data-theme="light"] .projects-section,
+:root[data-theme="light"] .education-section {
+  background: #f0eff7;
+  border-color: rgba(35, 31, 60, 0.08);
+}
+
+:root[data-theme="light"] .timeline-marker {
+  background: #fff;
+}
+
+:root[data-theme="light"] .tag {
+  color: #5f5e73;
+  background: #f5f4fa;
+  border-color: rgba(35, 31, 60, 0.1);
+}
+
+:root[data-theme="light"] .projects-footnote,
+:root[data-theme="light"] .company-name span,
+:root[data-theme="light"] .education-card small,
+:root[data-theme="light"] .footer {
+  color: #69687c;
+}
+
+:root[data-theme="light"] .muted-heading {
+  color: #77768a;
+}
+
+:root[data-theme="light"] .text-accent {
+  color: #6554ce;
+}
