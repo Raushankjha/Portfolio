@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   ArrowUpRight,
+  Download,
   Menu,
   Moon,
   Sun,
@@ -8,12 +9,13 @@ import {
 } from "lucide-react";
 import { useTheme } from "../contexts/ThemeContext";
 import Brand from "./Brand";
+import ResumeLink from "./ResumeLink";
 
 const navigationLinks = [
+  { label: "Home", id: "home" },
   { label: "About", id: "about" },
-  { label: "Experience", id: "experience" },
-  { label: "Projects", id: "projects" },
   { label: "Skills", id: "skills" },
+  { label: "Projects", id: "projects" },
   { label: "Contact", id: "contact" },
 ] as const;
 
@@ -63,9 +65,9 @@ export default function SiteHeader() {
           <Sun size={16} aria-hidden="true" />
           <Moon size={16} aria-hidden="true" />
         </button>
-        <a className="nav-cta" href="#contact">
-          Let&apos;s connect <ArrowUpRight size={15} aria-hidden="true" />
-        </a>
+        <ResumeLink className="nav-cta">
+          Resume <Download size={15} aria-hidden="true" />
+        </ResumeLink>
         <button
           className="menu-button"
           type="button"
@@ -93,6 +95,10 @@ export default function SiteHeader() {
               <ArrowUpRight size={16} aria-hidden="true" />
             </a>
           ))}
+          <ResumeLink className="mobile-nav-resume" onClick={closeMenu}>
+            Resume
+            <Download size={16} aria-hidden="true" />
+          </ResumeLink>
         </nav>
       )}
     </header>

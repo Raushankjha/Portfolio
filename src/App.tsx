@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, Code2, Layers3, Database, Workflow, MapPin, Terminal, CheckCircle2 } from "lucide-react";
-import { profile, experience, projects, skillGroups, education, achievements } from "./data";
+import { profile, experience, projects, skillGroups, coreConcepts, softSkills, education, achievements } from "./data";
 import Reveal, { revealVariants } from "./components/Reveal";
 import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import Button from "./components/Button";
+import ResumeLink from "./components/ResumeLink";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             <motion.p className="hero-lead" variants={revealVariants}>I'm <strong>{profile.name}</strong> — a full stack developer crafting secure, scalable enterprise applications and thoughtful digital experiences.</motion.p>
             <motion.div className="hero-actions" variants={revealVariants}>
               <Button href="#projects">Explore my work <ArrowDown size={16}/></Button>
-              <Button href="/Raushan_Kumar_Jha_Resume.pdf" variant="ghost" download><Download size={16}/> Download resume</Button>
+              <ResumeLink className="button button-ghost"><Download size={16}/> Download resume</ResumeLink>
             </motion.div>
             <motion.div className="hero-meta" variants={revealVariants}><span><MapPin size={14}/>{profile.location}</span><span className="meta-divider" /><span><span className="status-dot" /> Open to opportunities</span></motion.div>
           </motion.div>
@@ -74,7 +75,7 @@ function App() {
         <section className="section skills-section" id="skills">
           <div className="container">
             <Reveal><div className="section-heading"><span className="section-kicker">04 / TOOLKIT</span><h2>Tools for turning<br/><span className="muted-heading">ideas into products.</span></h2></div></Reveal>
-            <div className="skills-grid">{skillGroups.map((group, i) => <Reveal key={group.title} className="skill-card"><div className="skill-card-head"><span className="skill-number">0{i + 1}</span>{i === 0 ? <Code2/> : i === 1 ? <Terminal/> : i === 2 ? <Database/> : <Workflow/>}</div><h3>{group.title}</h3><p>{group.note}</p><div className="tag-list">{group.skills.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div></Reveal>)}</div>
+            <div className="skills-grid">{skillGroups.map((group, i) => <Reveal key={group.title} className="skill-card"><div className="skill-card-head"><span className="skill-number">0{i + 1}</span>{i === 0 ? <Code2/> : i === 1 ? <Terminal/> : i === 2 ? <Database/> : <Workflow/>}</div><h3>{group.title}</h3><p>{group.note}</p><div className="tag-list">{group.skills.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div>{i === skillGroups.length - 1 && <><div className="soft-skills-list"><p>Core concepts</p><div className="tag-list">{coreConcepts.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div></div><div className="soft-skills-list"><p>Soft skills</p><div className="tag-list">{softSkills.map(skill => <span className="tag" key={skill}>{skill}</span>)}</div></div></>}</Reveal>)}</div>
           </div>
         </section>
 

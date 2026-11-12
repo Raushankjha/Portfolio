@@ -20,7 +20,7 @@ npm run preview
 
 ## Resume file
 
-The resume download button uses `public/Raushan_Kumar_Jha_Resume.pdf`. Replace that file with an updated resume using the same filename if you want to update the download.
+The resume links use the uploaded `public/Raushan_masai_mern.pdf` file. Replace that file with an updated resume using the same filename if you want to update the download.
 
 ## Personalize links
 
